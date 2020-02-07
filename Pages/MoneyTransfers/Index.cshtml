@@ -1,0 +1,60 @@
+﻿@page
+@model Online_Money_Transfer_Web.Pages.MoneyTransfers.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Money Transfers</h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MoneyTransfer[0].TransferAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoneyTransfer[0].TransferDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoneyTransfer[0].MoneySender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoneyTransfer[0].MoneyReceiver)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MoneyTransfer[0].Provider)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.MoneyTransfer) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransferAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TransferDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoneySender.SenderName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MoneyReceiver.ReceiverName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Provider.ProviderName)
+            </td>
+            <td>
+                <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a class="btn btn-primary" asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a class="btn btn-primary" asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
